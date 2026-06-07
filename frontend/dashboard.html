@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    
+    <title>Gestor de Gastos</title>
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- HEADER -->
+    <div class="header">
+        <h2>Gestor de Gastos Personales</h2>
+        <button onclick="logout()">Cerrar sesión</button>
+    </div>
+
+    <!-- USUARIO -->
+    <h3 id="nombreUsuario"></h3>
+
+    <!-- BALANCE -->
+    <div class="balance-card">
+        <h2>Balance Total</h2>
+        <h1 id="balance">Q0.00</h1>
+    </div>
+
+    <!-- FORMULARIO -->
+    <div class="formulario">
+
+        <select id="tipo">
+            <option value="INGRESO">Ingreso</option>
+            <option value="GASTO">Gasto</option>
+        </select>
+
+        <input
+            type="text"
+            id="categoria"
+            placeholder="Categoría"
+        >
+
+        <input
+            type="text"
+            id="descripcion"
+            placeholder="Descripción"
+        >
+
+        <input
+            type="number"
+            id="monto"
+            placeholder="Monto"
+        >
+
+        <button onclick="guardarMovimiento()">
+            Guardar Movimiento
+        </button>
+
+    </div>
+
+    <!-- HISTORIAL -->
+    <h2>Historial de Movimientos</h2>
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Tipo</th>
+                <th>Categoría</th>
+                <th>Descripción</th>
+                <th>Monto</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+
+        <tbody id="tablaMovimientos"></tbody>
+
+    </table>
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>

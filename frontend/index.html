@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    
+    <title>Gestor de Gastos</title>
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <h1>Gestor de Gastos Personales</h1>
+
+    <h2>Balance Total</h2>
+    <h3 id="balance">Q0.00</h3>
+
+    <hr>
+
+    <h2>Nuevo Movimiento</h2>
+
+    <select id="tipo">
+        <option value="INGRESO">Ingreso</option>
+        <option value="GASTO">Gasto</option>
+    </select>
+
+    <input
+        type="text"
+        id="categoria"
+        placeholder="Categoría"
+    >
+
+    <input
+        type="text"
+        id="descripcion"
+        placeholder="Descripción"
+    >
+
+    <input
+        type="number"
+        id="monto"
+        placeholder="Monto"
+    >
+
+    <button onclick="guardarMovimiento()">
+        Guardar
+    </button>
+
+    <hr>
+
+    <h2>Historial</h2>
+
+    <table border="1">
+
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Tipo</th>
+                <th>Categoría</th>
+                <th>Descripción</th>
+                <th>Monto</th>
+            </tr>
+        </thead>
+
+        <tbody id="tablaMovimientos">
+
+        </tbody>
+
+    </table>
+
+<script src="app.js"></script>
+
+</body>
+</html>

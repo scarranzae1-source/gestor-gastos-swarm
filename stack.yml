@@ -1,0 +1,62 @@
+version: '3.8'
+
+services:
+  nginx:
+    image: stepcarranza/gastos-nginx:latest
+    ports:
+      - "80:80"
+    networks:
+      - red-gastos
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager # El proxy suele quedarse en el manager para recibir el tráfico
+
+  frontend:
+    image: stepcarranza/gastos-frontend:latest
+    networks:
+      - red-gastos
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+
+  backend:
+    image: stepcarranza/gastos-backend:latest
+    environment:
+      - DB_HOST=db-internal
+      - DB_USER=root
+      - DB_PASSWORD=rootpassword
+      - DB_NAME=gestorgastos
+    networks:
+      - red-gastos
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+
+  db:
+    image: stepcarranza/gastos-db:latest # 👈 Opción 1: Tu imagen con el init.sql ya incluido
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpassword
+      - MYSQL_DATABASE=gestorgastos
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql # Volúmen persistente local
+    networks:
+      red-gastos:
+        aliases:
+          - db-internal
+    deploy:
+      replicas: 1 # Las bases de datos relacionales en Swarm no deben llevar réplicas sin replicación de datos
+      placement:
+        constraints:
+          - node.role == manager # 👈 Opción 2: Forzamos a que no se mueva del nodo manager para no perder el volumen
+
+networks:
+  red-gastos:
+    driver: overlay
+
+volumes:
+  mysql_data: # Swarm creará este volumen local automáticamente en el nodo manager

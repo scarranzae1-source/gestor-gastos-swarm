@@ -1,0 +1,106 @@
+body{
+    font-family: Arial, sans-serif;
+    background: #0f172a;
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+.container{
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+}
+
+h1, h2, h3{
+    margin: 10px 0;
+}
+
+/* HEADER */
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #1e293b;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+/* BALANCE */
+.balance-card{
+    background: linear-gradient(135deg, #4d76af, #4d76af);
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* FORM */
+.formulario{
+    background: #1e293b;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+input, select{
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 8px;
+}
+
+/* BOTONES */
+button{
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #3b82f6;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover{
+    background: #2563eb;
+}
+
+/* TABLA */
+table{
+    width: 100%;
+    border-collapse: collapse;
+    background: #1e293b;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+th, td{
+    padding: 12px;
+    border-bottom: 1px solid #334155;
+    text-align: center;
+}
+
+th{
+    background: #0f172a;
+}
+
+/* BOTONES ACCIONES */
+td button{
+    width: auto;
+    padding: 6px 10px;
+    margin: 2px;
+    font-size: 12px;
+}
+
+td button:first-child{
+    background: #f59e0b;
+}
+
+td button:last-child{
+    background: #ef4444;
+}
