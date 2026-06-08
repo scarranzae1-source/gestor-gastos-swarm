@@ -48,7 +48,30 @@ Diseñar, desarrollar y desplegar una aplicación web funcional basada en arquit
 * Aplicar balanceo de carga con Nginx.
 * Garantizar la comunicación interna entre servicios sin utilizar localhost.
 
+##  Diagrama de Arquitectura de Red
+## Diagrama de Arquitectura de Red
+
+```text
+[ Cliente / Navegador ]
+          │ (Puerto 80)
+          ▼
+┌───────────────────┐
+│    Nginx Proxy    │ <── Balanceador de Carga (Round Robin)
+└─────────┬─────────┘
+          │
+  ┌───────┴───────┐
+  ▼               ▼
+┌───────────┐   ┌───────────┐
+│ Frontend  │   │  Backend  │ <── Orquestado en Docker Swarm
+│ (Réplica) │   │ (Réplica) │     (Comunicación por red overlay)
+└───────────┘   └─────┬─────┘
+                      │
+                      ▼
+                ┌───────────┐
+                │  MySQL DB │ <── Base de Datos (Persistencia)
+└───────────┘
 ---
+
 
 # II. TECNOLOGÍAS UTILIZADAS
 
@@ -93,7 +116,7 @@ Los servicios implementados son:
 
 ```mermaid
 graph TD
-    Usuario -->|HTTP| Nginx[Nginx Load Balancer]
+    Usuario -->|HTTP Puerto 80| Nginx[Nginx Load Balancer]
 
     Nginx --> FE1[Frontend Replica 1]
     Nginx --> FE2[Frontend Replica 2]
@@ -101,8 +124,8 @@ graph TD
     FE1 --> BE1[Backend Replica 1]
     FE2 --> BE2[Backend Replica 2]
 
-    BE1 --> DB[(MySQL)]
-    BE2 --> DB[(MySQL)]
+    BE1 --> DB[(MySQL DB)]
+    BE2 --> DB[(MySQL DB)]
 ```
 
 ---
